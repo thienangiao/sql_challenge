@@ -107,3 +107,21 @@ from "Employees" e
 group by e.last_name
 order by "No. of Employees" desc
 ;
+
+-----------------------------------------
+/*View for Bonus sections*/
+
+create view vw_employees as
+
+select e.emp_no as "Employee Number"
+, e.last_name as "Last Name"
+, e.first_name as "First Name"
+, e.sex as Sex
+, s.salary as Salary
+, ti.title as Title
+from "Employees" e
+inner join "Salaries" s
+	on e.emp_no = s.emp_no
+inner join "Titles" ti
+	on e.emp_title_id = ti.title_id
+;

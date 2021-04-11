@@ -21,7 +21,7 @@ CREATE TABLE "Titles" (
 
 CREATE TABLE "Salaries" (
     "emp_no" INTEGER   NOT NULL,
-    "salary" MONEY   NOT NULL,
+    "salary" NUMERIC(18,2)   NOT NULL,
     CONSTRAINT "pk_Salaries" PRIMARY KEY (
         "emp_no"
      )
