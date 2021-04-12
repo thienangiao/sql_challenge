@@ -5,8 +5,8 @@ select e.emp_no as "Employee Number"
 , e.first_name as "First Name"
 , e.sex as Sex
 , s.salary as Salary
-from "Employees" e
-inner join "Salaries" s
+from employees e
+inner join salaries s
 	on e.emp_no = s.emp_no
 order by "Employee Number"
 ;
@@ -16,8 +16,8 @@ order by "Employee Number"
 select e.first_name as "First Name"
 , e.last_name as "Last Name"
 , e.hire_date as "Hire Date"
-from "Employees" e
-inner join "Salaries" s
+from employees e
+inner join salaries s
 	on e.emp_no = s.emp_no
 where date_part('year',e.hire_date)='1986'
 order by "Hire Date","Last Name"
@@ -31,13 +31,13 @@ select dm.dept_no as "Department Number"
 , dm.emp_no as "Manager Employe Number"
 , e.last_name as "Manager Last Name"
 , e.first_name as "Manager First Name"
-from "Dept_Manager" dm
-inner join "Dept_Emp" de
+from Dept_Manager dm
+inner join dept_emp de
 	on dm.dept_no = de.dept_no
 	and dm.emp_no=de.emp_no
-inner join "Employees" e
+inner join employees e
 	on de.emp_no=e.emp_no	
-inner join "Departments" d
+inner join departments d
 	on de.dept_no=d.dept_no
 order by "Department Number","Manager Employe Number"
 ;		
@@ -49,10 +49,10 @@ select e.emp_no as "Employee Number"
 , e.last_name as "Last Name"
 , e.first_name as "First Name"
 , d.dept_name as "Department Name"
-from "Employees" e
-inner join "Dept_Emp" de
+from employees e
+inner join dept_emp de
 	on e.emp_no = de.emp_no
-inner join "Departments" d
+inner join departments d
 	on de.dept_no=d.dept_no
 order by "Employee Number"
 ;
@@ -62,7 +62,7 @@ order by "Employee Number"
 select e.first_name as "First Name"
 , e.last_name as "Last Name"
 , e.sex as Sex
-from "Employees" e
+from employees e
 where e.first_name = 'Hercules' and e.last_name like 'B%'
 order by "First Name","Last Name"
 ;
@@ -74,10 +74,10 @@ select e.emp_no as "Employee Number"
 , e.last_name as "Last Name"
 , e.first_name as "First Name"
 , d.dept_name as "Department Name"
-from "Employees" e
-inner join "Dept_Emp" de
+from employees e
+inner join dept_emp de
 	on e.emp_no = de.emp_no
-inner join "Departments" d
+inner join departments d
 	on de.dept_no=d.dept_no
 where d.dept_name = 'Sales'
 order by "Employee Number"
@@ -90,10 +90,10 @@ select e.emp_no as "Employee Number"
 , e.last_name as "Last Name"
 , e.first_name as "First Name"
 , d.dept_name as "Department Name"
-from "Employees" e
-inner join "Dept_Emp" de
+from employees e
+inner join dept_emp de
 	on e.emp_no = de.emp_no
-inner join "Departments" d
+inner join departments d
 	on de.dept_no=d.dept_no
 where d.dept_name in ('Sales','Development')
 order by "Employee Number"
@@ -103,7 +103,7 @@ order by "Employee Number"
 
 select e.last_name as "Last Name"
 ,count(e.emp_no) as "No. of Employees"
-from "Employees" e
+from employees e
 group by e.last_name
 order by "No. of Employees" desc
 ;
@@ -113,15 +113,15 @@ order by "No. of Employees" desc
 
 create view vw_employees as
 
-select e.emp_no as "Employee Number"
-, e.last_name as "Last Name"
-, e.first_name as "First Name"
-, e.sex as Sex
-, s.salary as Salary
-, ti.title as Title
-from "Employees" e
-inner join "Salaries" s
+select e.emp_no
+, e.last_name
+, e.first_name
+, e.sex
+, s.salary
+, ti.title
+from employees e
+inner join salaries s
 	on e.emp_no = s.emp_no
-inner join "Titles" ti
+inner join titles ti
 	on e.emp_title_id = ti.title_id
 ;
