@@ -31,7 +31,7 @@ select dm.dept_no as "Department Number"
 , dm.emp_no as "Manager Employe Number"
 , e.last_name as "Manager Last Name"
 , e.first_name as "Manager First Name"
-from Dept_Manager dm
+from dept_manager dm
 inner join dept_emp de
 	on dm.dept_no = de.dept_no
 	and dm.emp_no=de.emp_no
